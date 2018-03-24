@@ -1,7 +1,7 @@
-Projekt Grupowy - Grupa 3_
-Skład:_
-Aleksander Ćwikła_
-Paweł Banasik_
-Agata Mucha_
-Przemysław Bryła_
-Kamil Chodurek_
+Projekt Grupowy - Grupa 3 <br />
+Skład: <br />
+Aleksander Ćwikła <br />
+Paweł Banasik <br />
+Agata Mucha <br />
+Przemysław Bryła <br />
+Kamil Chodurek 
