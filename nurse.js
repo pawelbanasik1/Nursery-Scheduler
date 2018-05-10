@@ -6,12 +6,14 @@ function Nurse(id) {
     var nights = 0;
     var day = 0;
     var maxHours = 0;
+    var weaklyMaxHours = 0;    
     var workedHours = 0;
-    var entireWorkedHours = 0;
+    var weaklyWorkedHours = 0;
     var weekendsOffDuty = 0;
     var restHours = 0;
     var workedToday = false;
     var workedYesterday = false;
+    var canWorkAtNight = true;
 
     Nurse.prototype.getid = function () {
         return this.id;

@@ -1,4 +1,3 @@
-
 function WorkDay() {
     var D_demand = 3;
     var E_demand = 3;
