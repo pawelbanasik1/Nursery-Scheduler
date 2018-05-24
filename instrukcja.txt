@@ -1,4 +1,0 @@
-Instrukcja:
-W folderze z projektem uruchamiamy terminal, wpisujemy w nim py -m http.server 8000.
-W przeglądarke wpisujemy http://localhost:8000/public.html.
-Cieszymy sie z używania wspaniałej aplikacji.
