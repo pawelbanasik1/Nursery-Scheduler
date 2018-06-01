@@ -4,8 +4,8 @@
 <head>
   <title>Nursery Scheduler</title>
   <meta charset='utf-8' />
-  <script type="text/javascript" src="nurse.js"></script>
-  <script type="text/javascript" src="week.js"></script>
+  <script type="text/javascript" src="Model/nurse.js"></script>
+  <script type="text/javascript" src="Model/week.js"></script>
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
    <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -20,12 +20,12 @@
   <h1 style="text-align: center">Projekt Grupowy</h1>
 
   <!--Add buttons to initiate auth sequence and sign out-->
-  <button id="authorize-button"  class="btn btn-secondary btn-lg" style="display: none; margin: 10px;">Autoryzacja</button>
-  <button id="signout-button"  class="btn btn-secondary btn-lg" style="display: none;  margin: 10px;">Wyloguj sie</button>
+  <button id="authorize-button" style="display: none;">Autoryzacja</button>
+  <button id="signout-button" style="display: none;">Wyloguj sie</button>
 
-  <button id="add-button" class="btn btn-lg btn-primary" onclick="addEvents()">Dodaj</button>
-  <button id="clear-button" class="btn btn-secondary btn-lg" onclick="clearEvents()">Usun wszystkie rekordy</button>
-  <button id="list-button" class="btn btn-secondary btn-lg" onclick="listUpcomingEvents()">Wylistuj obecny grafik</button>
+  <button id="add-button" onclick="addEvents()">Dodaj</button>
+  <button id="clear-button" onclick="clearEvents()">Usun wszystkie rekordy</button>
+  <button id="list-button"onclick="listUpcomingEvents()">Wylistuj obecny grafik</button>
 
   <pre id="content"></pre>
 
