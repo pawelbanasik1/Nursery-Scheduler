@@ -4,7 +4,7 @@ function WorkDay() {
     var L_demand = 3;
     var N_demand = 1;
 
-
+dsadasdasdasdsa
 
     function getD_demand() {
       return this.D_demand;
