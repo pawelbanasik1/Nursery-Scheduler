@@ -1,3 +1,14 @@
+var D_begin = '08:00';
+var D_end = '17:00';
+var E_begin = '07:00';
+var E_end = '16:00';
+var L_begin = '14:00';
+var L_end = '23:00';
+var N_begin = '23:00';
+var N_end = '07:00';
+
+var kara = 0;
+
 function addEvents() {
 
     var l_pielegniarek = 16;
@@ -89,10 +100,13 @@ function addEvents() {
     var batch = gapi.client.newBatch();
     var batchCounter = 0;
 
+    softs(NursesArray);
+
+
 
 
     for (var i = 0; i < l_dni; i++) {
-        shuffle(NursesArray);
+        //shuffle(NursesArray);
 
 
         var tomorrow = new Date();
@@ -202,6 +216,9 @@ function addEvents() {
                 NursesArray[j].workedToday = false;
             }
             else {
+                if(NursesArray[j].consecutiveShifts == 1){
+                    kara+=1000;
+                }
                 NursesArray[j].consecutiveShifts = 0;
                 NursesArray[j].consecutiveNights = 0;
                 //weekends of duty
@@ -210,10 +227,11 @@ function addEvents() {
                 }
             }
         }
-
     }
 
     if (batchCounter == 320) {
+        console.log('Chuj');
+        console.log(kara);
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
                 location.reload();
@@ -325,6 +343,8 @@ function listUpcomingEvents() {
         }
     });
 }
+
+
 
 
 

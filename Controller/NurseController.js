@@ -19,6 +19,8 @@ function updateChosenNurse(nurse, shiftCode, dayOfWeek) {
 
 function checkNurse(nurse, dayOfWeek, shiftCode) {
 
+    console.log('kot');
+
     if (nurse.consecutiveShifts > 5) {
         return false;
     }
@@ -49,6 +51,15 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else return true;
 }
 
+function softs(NursesArray){
+    console.log('cycki');        
+    for (var j = 0; j < NursesArray.length; j++) {
+        if(NursesArray[j].workedYesterday){
+            swap(NursesArray, j);
+        }
+    }
+}
+
 //funkcja do mieszania tablicy
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -66,4 +77,13 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
+}
+
+//funkcja do wrzucania zmiennej element na 1 miejsce tablicy
+function swap(array, index) {
+    console.log(array[0], array[index]);
+    temporaryValue = array[0];
+    array[0] = array[index];
+    array[index] = temporaryValue;
+    console.log(array[0], array[index]);
 }
