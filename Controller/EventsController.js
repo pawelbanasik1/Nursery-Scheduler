@@ -221,6 +221,7 @@ function addEvents() {
         });
     }
     else {
+        console.log('proba');
         console.log(batchCounter);
         addEvents();
     }
