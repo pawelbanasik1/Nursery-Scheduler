@@ -19,8 +19,6 @@ function updateChosenNurse(nurse, shiftCode, dayOfWeek) {
 
 function checkNurse(nurse, dayOfWeek, shiftCode) {
 
-    console.log('kot');
-
     if (nurse.consecutiveShifts > 5) {
         return false;
     }
@@ -62,7 +60,6 @@ function softs(NursesArray, shiftCode){
         if(NursesArray[j].workedYesterday){
             swap(NursesArray, j);
         }
-
         //soft nr 4
         if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
             swap(NursesArray, j);
@@ -76,20 +73,9 @@ function softs(NursesArray, shiftCode){
             swap(NursesArray, j);
         }
         //sof  10
-        if(shiftCode==1)
+        if(shiftCode==1) {}
         //sof  12
 
-        
-    }
-}
-
-
-
-function softs(NursesArray){
-    for (var j = 0; j < NursesArray.length; j++) {
-        if(NursesArray[j].workedYesterday){
-            swap(NursesArray, j);
-        }
     }
 }
 
@@ -110,11 +96,4 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
-}
-
-//funkcja do wrzucania zmiennej element na 1 miejsce tablicy
-function swap(array, index) {
-    temporaryValue = array[0];
-    array[0] = array[index];
-    array[index] = temporaryValue;
 }

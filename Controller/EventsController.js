@@ -100,13 +100,9 @@ function addEvents() {
     var batch = gapi.client.newBatch();
     var batchCounter = 0;
 
-    softs(NursesArray);
-
-
-
 
     for (var i = 0; i < l_dni; i++) {
-        //shuffle(NursesArray);
+        shuffle(NursesArray);
 
 
         var tomorrow = new Date();
@@ -143,6 +139,7 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 2, dayOfWeek);
+                softs(NursesArray, 2);
                 count++;
                 if (count >= day.E_demand) {
                     count = 0;
@@ -163,6 +160,8 @@ function addEvents() {
                 batchCounter++;
 
                 updateChosenNurse(NursesArray[j], 1, dayOfWeek);
+                softs(NursesArray, 1);
+
                 count++;
                 if (count >= day.D_demand) {
                     count = 0;
@@ -183,6 +182,8 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 3, dayOfWeek);
+                softs(NursesArray, 3);
+
                 count++;
                 if (count >= day.L_demand) {
                     count = 0;
@@ -201,6 +202,8 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 4, dayOfWeek);
+                softs(NursesArray, 4);
+
                 count++;
                 if (count >= day.N_demand) {
                     count = 0;
@@ -230,7 +233,6 @@ function addEvents() {
     }
 
     if (batchCounter == 320) {
-        console.log('Chuj');
         console.log(kara);
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
