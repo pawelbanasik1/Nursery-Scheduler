@@ -103,6 +103,7 @@ function addEvents() {
 
     for (var i = 0; i < l_dni; i++) {
         shuffle(NursesArray);
+        console.log('Test');
 
 
         var tomorrow = new Date();
@@ -241,7 +242,7 @@ function addEvents() {
         });
     }
     else {
-        console.log(batchCounter);
+        //console.log(batchCounter);
         addEvents();
     }
 }
