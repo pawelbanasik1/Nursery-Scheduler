@@ -102,10 +102,6 @@ function addEvents() {
 
 
     for (var i = 0; i < l_dni; i++) {
-        shuffle(NursesArray);
-        console.log('Test');
-
-
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
         var month = tomorrow.getMonth() + 1; //pobieramy numer miesiaca
