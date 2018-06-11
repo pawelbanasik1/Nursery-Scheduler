@@ -52,6 +52,7 @@ function swap(array, index) {
     var temp = array[index];
     array.splice(index, 1); //usuwamy element stamtad gdzie byl
     array.splice(0, 0, temp); //dodajemy na pierwsze miejsce element
+    console.log(array);
 }
 
 function softs(NursesArray, shiftCode){
