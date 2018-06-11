@@ -145,6 +145,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 9;
         }
+        NursesArray = softs(NursesArray, 2);
 
         //generating D shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -155,10 +156,7 @@ function addEvents() {
                     'resource': event
                 }));
                 batchCounter++;
-
                 updateChosenNurse(NursesArray[j], 1, dayOfWeek);
-                softs(NursesArray, 1);
-
                 count++;
                 if (count >= day.D_demand) {
                     count = 0;
@@ -166,8 +164,9 @@ function addEvents() {
                 }
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 1;
-
         }
+        NursesArray = softs(NursesArray, 2);
+
 
         //generating L shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -179,8 +178,6 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 3, dayOfWeek);
-                softs(NursesArray, 3);
-
                 count++;
                 if (count >= day.L_demand) {
                     count = 0;
@@ -189,6 +186,8 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 6;
         }
+        NursesArray = softs(NursesArray, 2);
+
         //Night shift
         for (var j = 0; j < NursesArray.length; j++) {
             if (checkNurse(NursesArray[j], dayOfWeek, 4)) {
@@ -199,8 +198,6 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 4, dayOfWeek);
-                softs(NursesArray, 4);
-
                 count++;
                 if (count >= day.N_demand) {
                     count = 0;
@@ -209,6 +206,9 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 8;
         }
+        NursesArray = softs(NursesArray, 2);
+
+
         for (var j = 0; j < NursesArray.length; j++) {
             //console.log(NursesArray[j].id);
             //resetujemy na koniec dnia warunek czy dana osoba pracowala
