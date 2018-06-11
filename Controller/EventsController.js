@@ -242,7 +242,7 @@ function addEvents() {
         });
     }
     else {
-        //console.log(batchCounter);
+        console.log(batchCounter);
         addEvents();
     }
 }
