@@ -49,9 +49,9 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else return true;
 }
 function swap(array, index) {
-    temporaryValue = array[0];
-    array[0] = array[index];
-    array[index] = temporaryValue;
+    var temp = array[index];
+    array.splice(index, 1); //usuwamy element stamtad gdzie byl
+    array.splice(0, 0, temp); //dodajemy na pierwsze miejsce element
 }
 
 function softs(NursesArray, shiftCode){
