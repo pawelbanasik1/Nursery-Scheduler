@@ -54,7 +54,7 @@ function swap(array, index) {
     array[index] = temporaryValue;
 }
 
-function softs(NursesArray){
+function softs(NursesArray, shiftCode){
     for (var j = 0; j < NursesArray.length; j++) {
         //soft nr 2
         if(NursesArray[j].workedYesterday){
@@ -62,14 +62,20 @@ function softs(NursesArray){
         }
 
         //soft nr 4
-        if(NursesArray[j].maxHours>=0 && NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>=2 && NursesArray[j].consecutiveNights<=3){
+        if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
             swap(NursesArray, j);
         }
         //soft 6
-        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts>=4 && NursesArray[j].consecutiveShifts<=5){
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
             swap(NursesArray, j);
         }
-        
+        //sof  8
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
+            swap(NursesArray, j);
+        }
+        //sof  10
+        if(shiftCode==1)
+        //sof  12
 
         
     }
