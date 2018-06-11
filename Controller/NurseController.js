@@ -50,6 +50,40 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     }
     else return true;
 }
+function swap(array, index) {
+    temporaryValue = array[0];
+    array[0] = array[index];
+    array[index] = temporaryValue;
+}
+
+function softs(NursesArray, shiftCode){
+    for (var j = 0; j < NursesArray.length; j++) {
+        //soft nr 2
+        if(NursesArray[j].workedYesterday){
+            swap(NursesArray, j);
+        }
+
+        //soft nr 4
+        if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
+            swap(NursesArray, j);
+        }
+        //soft 6
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
+            swap(NursesArray, j);
+        }
+        //sof  8
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
+            swap(NursesArray, j);
+        }
+        //sof  10
+        if(shiftCode==1)
+        //sof  12
+
+        
+    }
+}
+
+
 
 function softs(NursesArray){
     for (var j = 0; j < NursesArray.length; j++) {
