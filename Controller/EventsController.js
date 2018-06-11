@@ -210,7 +210,7 @@ function addEvents() {
             else NursesArray[j].restHours = NursesArray[j].restHours + 8;
         }
         for (var j = 0; j < NursesArray.length; j++) {
-            console.log(NursesArray[j].id);
+            //console.log(NursesArray[j].id);
             //resetujemy na koniec dnia warunek czy dana osoba pracowala
             if (NursesArray[j].workedToday == true) {
                 NursesArray[j].workedYesterday = true;
