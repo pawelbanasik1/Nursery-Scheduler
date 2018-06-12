@@ -55,29 +55,37 @@ function swap(array, index) {
     return array;
 }
 
-function softs(NursesArray, shiftCode){
+function softs(NursesArray){
+
+    var temparray;
     for (var j = 0; j < NursesArray.length; j++) {
         //soft nr 2
         if(NursesArray[j].workedYesterday){
-            swap(NursesArray, j);
+            NursesArray[j]+=1000;
+            temparray = swap(NursesArray, j);
         }
         //soft nr 4
         if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
-            swap(NursesArray, j);
+            NursesArray[j]+=1000;
+            //temparray = swap(NursesArray, j);
         }
         //soft 6
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
-            swap(NursesArray, j);
+            NursesArray[j]+=10;
         }
         //sof  8
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
-            swap(NursesArray, j);
+            NursesArray[j]+=10;
         }
         //sof  10
-        if(shiftCode==1) {}
+        //if(shiftCode==1) {}
         //sof  12
 
     }
+    if(temparray != null){
+        return temparray;
+    }
+    else return NursesArray;
 }
 
 //funkcja do mieszania tablicy

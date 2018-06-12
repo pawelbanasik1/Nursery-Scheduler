@@ -14,5 +14,6 @@ function Nurse(id) {
     var workedToday = false;
     var workedYesterday = false;
     var canWorkAtNight = true;
+    var weight = 0;
     
 }

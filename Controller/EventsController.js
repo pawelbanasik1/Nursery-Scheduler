@@ -7,8 +7,6 @@ var L_end = '23:00';
 var N_begin = '23:00';
 var N_end = '07:00';
 
-var kara = 0;
-
 function addEvents() {
 
     var l_pielegniarek = 16;
@@ -59,13 +57,12 @@ function addEvents() {
         NursesArray[j].workedDays = 0;
         NursesArray[j].workedHours = 0;
         NursesArray[j].restHours = 0;
+        NursesArray[j].weight = 0;
         NursesArray[j].workedToday = false;
         NursesArray[j].workedYesterday = false;
         NursesArray[j].weekendsOffDuty = 0;
         NursesArray[j].weaklyWorkedHours = 0;
         NursesArray[j].canWorkAtNight = true;
-
-
         //Pierwsza pielegniarka nie moze pracowac w nocy
         NursesArray[0].canWorkAtNight = false;
 
@@ -102,6 +99,9 @@ function addEvents() {
 
 
     for (var i = 0; i < l_dni; i++) {
+        shuffle(NursesArray);
+        NursesArray = softs(NursesArray);
+
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
         var month = tomorrow.getMonth() + 1; //pobieramy numer miesiaca
@@ -125,7 +125,6 @@ function addEvents() {
             day.N_demand = 1;
         }
 
-
         //generating E shift
         for (var j = 0; j < NursesArray.length; j++) {
             if (checkNurse(NursesArray[j], dayOfWeek, 2)) {
@@ -136,7 +135,6 @@ function addEvents() {
                 }));
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 2, dayOfWeek);
-                softs(NursesArray, 2);
                 count++;
                 if (count >= day.E_demand) {
                     count = 0;
@@ -145,7 +143,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 9;
         }
-        NursesArray = softs(NursesArray, 2);
+        NursesArray = softs(NursesArray);
 
         //generating D shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -156,6 +154,7 @@ function addEvents() {
                     'resource': event
                 }));
                 batchCounter++;
+
                 updateChosenNurse(NursesArray[j], 1, dayOfWeek);
                 count++;
                 if (count >= day.D_demand) {
@@ -165,7 +164,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 1;
         }
-        NursesArray = softs(NursesArray, 2);
+        NursesArray = softs(NursesArray);
 
 
         //generating L shift
@@ -186,7 +185,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 6;
         }
-        NursesArray = softs(NursesArray, 2);
+        NursesArray = softs(NursesArray);
 
         //Night shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -206,20 +205,15 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 8;
         }
-        NursesArray = softs(NursesArray, 2);
-
+        NursesArray = softs(NursesArray);
 
         for (var j = 0; j < NursesArray.length; j++) {
-            //console.log(NursesArray[j].id);
             //resetujemy na koniec dnia warunek czy dana osoba pracowala
             if (NursesArray[j].workedToday == true) {
                 NursesArray[j].workedYesterday = true;
                 NursesArray[j].workedToday = false;
             }
             else {
-                if(NursesArray[j].consecutiveShifts == 1){
-                    kara+=1000;
-                }
                 NursesArray[j].consecutiveShifts = 0;
                 NursesArray[j].consecutiveNights = 0;
                 //weekends of duty
@@ -228,10 +222,11 @@ function addEvents() {
                 }
             }
         }
+
     }
 
     if (batchCounter == 320) {
-        console.log(kara);
+        console.log('udalo sie');
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
                 location.reload();
@@ -259,15 +254,16 @@ function appendPre(message) {
     pre.appendChild(textContent);
 }
 
-function createEventString(nourseId, month, startingDate, endingDate, shiftBegin, shiftEnd, colorId) {
+function createEventString(nurseId, month, startingDate, endingDate, shiftBegin, shiftEnd, colorId) {
 
     var endingMonth = month;
     if (endingDate == 32) {
         endingDate = 1;
         endingMonth = month + 1;
     }
+    console.log(nurseId);
     var event = {
-        'summary': 'Pielęgniarka ' + nourseId,
+        'summary': 'Pielęgniarka ' + nurseId,
         'location': 'Szpital',
         'description': '//TODO',
         'colorId': colorId,
@@ -343,8 +339,3 @@ function listUpcomingEvents() {
         }
     });
 }
-
-
-
-
-
