@@ -81,42 +81,63 @@ function swap(array, index) {
 }
 
 function softs(NursesArray){
+
     var temparray;
     for (var j = 0; j < NursesArray.length; j++) {
-        /*
+        if(NursesArray[j].weekendsOffDuty < 2){
+            //temparray = swap(NursesArray, j);
+           
+        }
+    
         //soft nr 2
         if(NursesArray[j].workedYesterday){
-            temparray = swap(NursesArray, j);
+            //temparray = swap(NursesArray, j);
+            NursesArray[j].weight+=1000;
         }
+        
         //soft nr 4
         if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
-            temparray = swap(NursesArray, j);
-        }*/
-        /*
+            //temparray = swap(NursesArray, j);
+            NursesArray[j].weight+=1000;
+        }
+        
         //soft 6
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
-            NursesArray[j]+=10;
+            NursesArray[j].weight+=10;
         }
         //soft  8
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
-            NursesArray[j]+=10;
+            NursesArray[j].weight+=10;
         }
 
         //soft  10
         if(NursesArray[j].consecutiveEarlies < 2) {
-            temparray = swap(NursesArray, j);
+            //temparray = swap(NursesArray, j);
+            NursesArray[j].weight+=10;
         }
         //soft  12 //to jest zle ale to niwazne bo i tak ma wage 10 wiec olewamy
         if(NursesArray[j].consecutiveDays > 0 && NursesArray[j].consecutiveEarlies > 0) {
-            temparray = swap(NursesArray, j);
+            //temparray = swap(NursesArray, j);
+            NursesArray[j].weight+=5;
         }
-        */
+        
 
-    }
+    }/*
     if(temparray != null){
         return temparray;
     }
     else return NursesArray;
+    */
+}
+//sumowanie wag softow dla kazdej iteracji
+function weightSum (NursesArray)
+{
+var total_weight=0;
+for (var j = 0; j < NursesArray.length; j++)
+{
+    total_weight+=NursesArray[j].weight;
+}
+return total_weight;
 }
 
 //funkcja do mieszania tablicy
