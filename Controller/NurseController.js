@@ -46,6 +46,9 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else if (nurse.canWorkAtNight == false && shiftCode == 4) {
         return false;
     }
+    else if(nurse.workedYesterday == false && dayOfWeek == 7){
+        return false;
+    }
     else return true;
 }
 function swap(array, index) {
@@ -56,18 +59,17 @@ function swap(array, index) {
 }
 
 function softs(NursesArray){
+    shuffle(NursesArray);
 
     var temparray;
     for (var j = 0; j < NursesArray.length; j++) {
         //soft nr 2
         if(NursesArray[j].workedYesterday){
-            NursesArray[j]+=1000;
             temparray = swap(NursesArray, j);
         }
         //soft nr 4
         if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
-            NursesArray[j]+=1000;
-            //temparray = swap(NursesArray, j);
+            temparray = swap(NursesArray, j);
         }
         //soft 6
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){

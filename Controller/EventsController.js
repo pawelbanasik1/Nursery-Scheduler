@@ -51,6 +51,7 @@ function addEvents() {
     for (var j = 0; j < NursesArray.length; j++) {
 
         //inicjalizacja parametrow pielegniarek
+        NursesArray[j].id = j;
         NursesArray[j].consecutiveShifts = 0;
         NursesArray[j].consecutiveNights = 0;
         NursesArray[j].workedNights = 0;
@@ -100,7 +101,7 @@ function addEvents() {
 
     for (var i = 0; i < l_dni; i++) {
         shuffle(NursesArray);
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
@@ -143,7 +144,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 9;
         }
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
         //generating D shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -164,7 +165,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 1;
         }
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
 
         //generating L shift
@@ -185,7 +186,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 6;
         }
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
         //Night shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -205,7 +206,7 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 8;
         }
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
         for (var j = 0; j < NursesArray.length; j++) {
             //resetujemy na koniec dnia warunek czy dana osoba pracowala
@@ -217,16 +218,17 @@ function addEvents() {
                 NursesArray[j].consecutiveShifts = 0;
                 NursesArray[j].consecutiveNights = 0;
                 //weekends of duty
-                if (dayOfWeek == 7 && NursesArray[j].restHours >= 60) {
+                if (dayOfWeek == 7 && NursesArray[j].workedYesterday == false) {
                     NursesArray[j].weekendsOffDuty++;
                 }
             }
         }
-
+        for (var j = 0; j < NursesArray.length; j++) {
+            //console.log(NursesArray[j].id, NursesArray[j].weekendsOffDuty);
+        }
     }
 
     if (batchCounter == 320) {
-        console.log('udalo sie');
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
                 location.reload();
@@ -261,7 +263,6 @@ function createEventString(nurseId, month, startingDate, endingDate, shiftBegin,
         endingDate = 1;
         endingMonth = month + 1;
     }
-    console.log(nurseId);
     var event = {
         'summary': 'Pielęgniarka ' + nurseId,
         'location': 'Szpital',
