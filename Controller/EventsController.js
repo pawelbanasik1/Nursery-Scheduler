@@ -101,10 +101,6 @@ function addEvents() {
     NursesArray[6].consecutiveLates+=2;
 
 
-
-
-
-
     var today = new Date();
     var x;
 
@@ -120,7 +116,7 @@ function addEvents() {
 
     for (var i = 0; i < l_dni; i++) {
         shuffle(NursesArray);
-        //NursesArray = softs(NursesArray);
+        NursesArray = softs(NursesArray);
 
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
@@ -165,7 +161,6 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 9;
         }
-        //NursesArray = softs(NursesArray);
 
         //generating D shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -186,8 +181,6 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 1;
         }
-        //NursesArray = softs(NursesArray);
-
 
         //generating L shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -230,7 +223,8 @@ function addEvents() {
             }
             else NursesArray[j].restHours = NursesArray[j].restHours + 8;
         }
-        //NursesArray = softs(NursesArray);
+
+        NursesArray = wages(NursesArray);
 
         for (var j = 0; j < NursesArray.length; j++) {
             //resetujemy na koniec dnia warunek czy dana osoba pracowala
@@ -250,19 +244,23 @@ function addEvents() {
             }
         }
     }
+    //liczenie kary
+    var total_weight=0;
+    for (var j = 0; j < NursesArray.length; j++)
+    {
+        total_weight+=NursesArray[j].weight;
+    }
 
     if (batchCounter == 320) {
-        for (var j = 0; j < NursesArray.length; j++) {
-            console.log(NursesArray[j].id, NursesArray[j].weekendsOffDuty);
-        }
         batch.then(function () {
-            if (confirm("Wygenerowano grafik.")) {
+            //if (confirm("Wygenerowano grafik. Kara wynosi: " + total_weight)) {
+            if (confirm("Wygenerowano grafik")) {
                 location.reload();
             }
         });
     }
     else {
-        console.log(batchCounter);
+        //console.log(batchCounter);
         addEvents();
     }
 }

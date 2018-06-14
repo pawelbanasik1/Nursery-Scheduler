@@ -39,7 +39,6 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else if (nurse.consecutiveLates > 0 && shiftCode < 3) {
         return false;
     }
-    //--
     else if (nurse.consecutiveNights >= 2 && nurse.restHours >= 42) {
         return false;
     }
@@ -56,7 +55,6 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
         return false;
     }
     //weekends of duty
-    
     else if(dayOfWeek == 7){
         if(nurse.weekendsOffDuty < 4){
             return true;
@@ -80,64 +78,51 @@ function swap(array, index) {
     return array;
 }
 
+
 function softs(NursesArray){
+    //2 soft
+    for (var j = 0; j < NursesArray.length - 12; j++) {
+    if(NursesArray[j].workedYesterday){
+        NursesArray = swap(NursesArray, j);
+    }        
+
+    }
+    return NursesArray;
+}
+
+function wages(NursesArray){
 
     var temparray;
     for (var j = 0; j < NursesArray.length; j++) {
-        if(NursesArray[j].weekendsOffDuty < 2){
-            //temparray = swap(NursesArray, j);
-           
-        }
-    
+        
         //soft nr 2
-        if(NursesArray[j].workedYesterday){
-            //temparray = swap(NursesArray, j);
+        if(NursesArray[j].consecutiveShifts == 1 && NursesArray[j].workedToday == false){
             NursesArray[j].weight+=1000;
         }
         
         //soft nr 4
-        if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
-            //temparray = swap(NursesArray, j);
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].consecutiveNights==1 && (NursesArray[j].workedToday == false || NursesArray[j].consecutiveShifts > 1)){
             NursesArray[j].weight+=1000;
         }
-        
-        //soft 6
-        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
+        //soft  6
+        if(NursesArray[j].maxHours>=30  && NursesArray[j].weaklyWorkedHours < 32){
+             NursesArray[j].weight+=10;
+        }
+        //soft 8
+        if(NursesArray[j].maxHours>=30 && NursesArray[j].consecutiveShifts < 4 && NursesArray[j].workedToday == false){
             NursesArray[j].weight+=10;
         }
-        //soft  8
-        if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
-            NursesArray[j].weight+=10;
-        }
-
         //soft  10
-        if(NursesArray[j].consecutiveEarlies < 2) {
-            //temparray = swap(NursesArray, j);
+        if(NursesArray[j].consecutiveEarlies < 2  && NursesArray[j].workedToday == true) {
             NursesArray[j].weight+=10;
         }
-        //soft  12 //to jest zle ale to niwazne bo i tak ma wage 10 wiec olewamy
+        //soft  12 
         if(NursesArray[j].consecutiveDays > 0 && NursesArray[j].consecutiveEarlies > 0) {
-            //temparray = swap(NursesArray, j);
             NursesArray[j].weight+=5;
         }
-        
-
     }
-    if(temparray != null){
-        return temparray;
-    }
-    else return NursesArray;
+    return NursesArray;
     
-}
-//sumowanie wag softow dla kazdej iteracji
-function weightSum (NursesArray)
-{
-var total_weight=0;
-for (var j = 0; j < NursesArray.length; j++)
-{
-    total_weight+=NursesArray[j].weight;
-}
-return total_weight;
 }
 
 //funkcja do mieszania tablicy
