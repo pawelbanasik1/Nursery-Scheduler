@@ -88,6 +88,22 @@ function addEvents() {
         }
     }
 
+    //wprowadzamy tydzien -1
+    NursesArray[2].consecutiveNights+=2;
+    NursesArray[2].consecutiveShifts+=2;
+    NursesArray[3].consecutiveShifts+=2;
+    NursesArray[4].consecutiveShifts+=2;
+    NursesArray[5].consecutiveShifts+=2;
+    NursesArray[6].consecutiveShifts+=2;
+    NursesArray[7].consecutiveShifts+=2;
+    NursesArray[8].consecutiveShifts+=2;
+    NursesArray[5].consecutiveLates+=2;
+    NursesArray[6].consecutiveLates+=2;
+
+
+
+
+
 
     var today = new Date();
     var x;
@@ -104,7 +120,7 @@ function addEvents() {
 
     for (var i = 0; i < l_dni; i++) {
         shuffle(NursesArray);
-        NursesArray = softs(NursesArray);
+        //NursesArray = softs(NursesArray);
 
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
@@ -189,9 +205,11 @@ function addEvents() {
                     break;
                 }
             }
-            else NursesArray[j].restHours = NursesArray[j].restHours + 6;
+            else { 
+                NursesArray[j].consecutiveLates = 0;
+                NursesArray[j].restHours = NursesArray[j].restHours + 6;
+            }
         }
-        //NursesArray = softs(NursesArray);
 
         //Night shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -224,7 +242,6 @@ function addEvents() {
                 NursesArray[j].workedYesterday = false;
                 NursesArray[j].consecutiveShifts = 0;
                 NursesArray[j].consecutiveNights = 0;
-                NursesArray[j].consecutiveLates = 0;
 
                 //weekends of duty
                 if (dayOfWeek == 1 && NursesArray[j].workedYesterday == false) {
@@ -234,20 +251,15 @@ function addEvents() {
         }
     }
 
-
-
-
     if (batchCounter == 320) {
         for (var j = 0; j < NursesArray.length; j++) {
-            console.log(NursesArray[j].weekendsOffDuty);
+            console.log(NursesArray[j].id, NursesArray[j].weekendsOffDuty);
         }
-        /*
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
                 location.reload();
             }
         });
-        */
     }
     else {
         console.log(batchCounter);
@@ -354,4 +366,8 @@ function listUpcomingEvents() {
             appendPre('Nie znaleziono grafiku.');
         }
     });
+}
+
+function alertfunction(){
+    alert("Grafik zostanie wygenerowany. Proszę czekać...");
 }
