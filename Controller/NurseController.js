@@ -122,12 +122,12 @@ function softs(NursesArray){
         }
         
 
-    }/*
+    }
     if(temparray != null){
         return temparray;
     }
     else return NursesArray;
-    */
+    
 }
 //sumowanie wag softow dla kazdej iteracji
 function weightSum (NursesArray)
