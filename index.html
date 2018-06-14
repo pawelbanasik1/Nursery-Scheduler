@@ -74,7 +74,7 @@
                   <img src="images/nurse22.png" alt="Image 02" class="image_wrapper image_fl" />
                   <p><em>Nasz team</em></p>
                   <p>Jesteśmy prężnie rozwijającą się firmą w której w skład wchodzą: <br><br><br>
-                  	<b>Aleksander Ćwikła</b> 	- team leader, programista. Interesuje się wszystkim i niczym. Życie to penisy. Charakter: ENTP <br>
+                  	<b>Aleksander Ćwikła</b> 	- team leader, programista. Interesuje się wszystkim i niczym. Charakter: ENTP. Moim zdaniem to nie ma tak, że dobrze albo że nie dobrze. Gdybym miał powiedzieć, co cenię w życiu najbardziej, powiedziałbym, że ludzi. Ekhm... Ludzi, którzy podali mi pomocną dłoń, kiedy sobie nie radziłem, kiedy byłem sam. I co ciekawe, to właśnie przypadkowe spotkania wpływają na nasze życie. Chodzi o to, że kiedy wyznaje się pewne wartości, nawet pozornie uniwersalne, bywa, że nie znajduje się zrozumienia, które by tak rzec, które pomaga się nam rozwijać. Ja miałem szczęście, by tak rzec, ponieważ je znalazłem. I dziękuję życiu. Dziękuję mu, życie to śpiew, życie to taniec, życie to miłość. Wielu ludzi pyta mnie o to samo, ale jak ty to robisz?, skąd czerpiesz tę radość? A ja odpowiadam, że to proste, to umiłowanie życia, to właśnie ono sprawia, że dzisiaj na przykład buduję maszyny, a jutro... kto wie, dlaczego by nie, oddam się pracy społecznej i będę ot, choćby sadzić... znaczy... marchew. <br>
               		<b>Agata Mucha</b> 		- vice-leader, grafik, edytor. Charakter: INFP<br>
               		<b>Paweł Banasik</b>		- główny programista, administrator.<br>
               		<b>Kamil Chodurek</b>	- programista.<br>
@@ -90,9 +90,10 @@
                 <div class="cleaner_h20"></div>
         
                 <ul class="service_list">
-                  <li><a href="#" class="service_one" onclick="alertfunction();addEvents();">Dodaj</a></li>
+                  <li><a href="#" class="service_two" onclick="alertfunction();addEvents();">Dodaj</a></li>
                   <li><a href="#" class="service_three" onclick="clearEvents()">Usun wszystkie rekordy</a></li>
-                  <li><a href="#" class="service_five" onclick = "handleAuthClick()">Autoryzacja</a></li>
+                  <li><a href="#" class="service_one" onclick = "handleAuthClick()">Autoryzacja</a></li>
+
 				</ul>
               </div> <!-- end of services -->
         
@@ -102,17 +103,17 @@
                 <h1>Our Galleries</h1>
                 <div id="gallery_container">
                   <div class="gallery_box float_l">
-                    <a href="#"><img src="images/gallery/image_01.jpg" alt="Project 1" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_01.jpg" alt="Project 1" /></a> </div>
                   <div class="gallery_box float_r">
-                    <a href="#"><img src="images/gallery/image_02.jpg" alt="Project 2" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_02.jpg" alt="Project 2" /></a> </div>
                   <div class="gallery_box float_l">
-                    <a href="#"><img src="images/gallery/image_03.jpg" alt="Project 3" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_03.jpg" alt="Project 3" /></a> </div>
                   <div class="gallery_box float_r">
-                    <a href="#"><img src="images/gallery/image_04.jpg" alt="Project 4" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_04.jpg" alt="Project 4" /></a> </div>
                   <div class="gallery_box float_l">
-                    <a href="#"><img src="images/gallery/image_05.jpg" alt="Project 5" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_05.jpg" alt="Project 5" /></a> </div>
                   <div class="gallery_box float_r">
-                    <a href="#"><img src="images/gallery/image_06.jpg" alt="Project 6" /></a> </div>
+                    <a href="#"><img class ="gallery1" src="images/gallery/image_06.jpg" alt="Project 6" /></a> </div>
                   <div class="cleaner"></div>
                 </div>
               </div>
@@ -169,4 +170,12 @@
 </html>
 
 <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<script>
+function launchServer(){
+  var wshShell = new ActiveXObject("WScript.Shell");
+  wshShell.Run("server.bat");
+}
+
 </script>

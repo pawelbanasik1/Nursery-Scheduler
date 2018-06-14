@@ -15,6 +15,10 @@ body {
 	background-repeat: repeat;
 }
 
+.gallery1:hover {
+	-webkit-transform: scale(2);
+  }
+
 a, a:link, a:visited { color: #de6d19; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
