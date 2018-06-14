@@ -54,6 +54,7 @@ function addEvents() {
         NursesArray[j].id = j;
         NursesArray[j].consecutiveShifts = 0;
         NursesArray[j].consecutiveNights = 0;
+        NursesArray[j].consecutiveLates = 0;
         NursesArray[j].workedNights = 0;
         NursesArray[j].workedDays = 0;
         NursesArray[j].workedHours = 0;
@@ -196,6 +197,9 @@ function addEvents() {
                     'calendarId': CAL_ID,
                     'resource': event
                 }));
+                if(dayOfMonth == 30){
+                    console.log(dayOfMonth, event);
+                }
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 4, dayOfWeek);
                 count++;
@@ -259,7 +263,8 @@ function appendPre(message) {
 function createEventString(nurseId, month, startingDate, endingDate, shiftBegin, shiftEnd, colorId) {
 
     var endingMonth = month;
-    if (endingDate == 32) {
+
+    if (endingDate == 31) {
         endingDate = 1;
         endingMonth = month + 1;
     }

@@ -3,6 +3,7 @@ function Nurse(id) {
 
     var consecutiveShifts = 0;
     var consecutiveNights = 0;
+    var consecutiveLates = 0;
     var workedNights = 0;
     var workedDays = 0;
     var maxHours = 0;
