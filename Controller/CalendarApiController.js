@@ -45,7 +45,7 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-        listUpcomingEvents();
+        //listUpcomingEvents();
     }
 }
 

@@ -55,6 +55,8 @@ function addEvents() {
         NursesArray[j].consecutiveShifts = 0;
         NursesArray[j].consecutiveNights = 0;
         NursesArray[j].consecutiveLates = 0;
+        NursesArray[j].consecutiveEarlies = 0;
+        NursesArray[j].consecutiveDays = 0;
         NursesArray[j].workedNights = 0;
         NursesArray[j].workedDays = 0;
         NursesArray[j].workedHours = 0;
@@ -102,7 +104,7 @@ function addEvents() {
 
     for (var i = 0; i < l_dni; i++) {
         shuffle(NursesArray);
-        //NursesArray = softs(NursesArray);
+        NursesArray = softs(NursesArray);
 
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + i + 1); //Iteracja po kolejnych dniach od kolejnego tygodnia
@@ -126,6 +128,8 @@ function addEvents() {
             day.L_demand = 2;
             day.N_demand = 1;
         }
+
+
 
         //generating E shift
         for (var j = 0; j < NursesArray.length; j++) {
@@ -197,9 +201,7 @@ function addEvents() {
                     'calendarId': CAL_ID,
                     'resource': event
                 }));
-                if(dayOfMonth == 30){
-                    console.log(dayOfMonth, event);
-                }
+
                 batchCounter++;
                 updateChosenNurse(NursesArray[j], 4, dayOfWeek);
                 count++;
@@ -219,25 +221,33 @@ function addEvents() {
                 NursesArray[j].workedToday = false;
             }
             else {
+                NursesArray[j].workedYesterday = false;
                 NursesArray[j].consecutiveShifts = 0;
                 NursesArray[j].consecutiveNights = 0;
+                NursesArray[j].consecutiveLates = 0;
+
                 //weekends of duty
-                if (dayOfWeek == 7 && NursesArray[j].workedYesterday == false) {
+                if (dayOfWeek == 1 && NursesArray[j].workedYesterday == false) {
                     NursesArray[j].weekendsOffDuty++;
                 }
             }
         }
-        for (var j = 0; j < NursesArray.length; j++) {
-            //console.log(NursesArray[j].id, NursesArray[j].weekendsOffDuty);
-        }
     }
 
+
+
+
     if (batchCounter == 320) {
+        for (var j = 0; j < NursesArray.length; j++) {
+            console.log(NursesArray[j].weekendsOffDuty);
+        }
+        /*
         batch.then(function () {
             if (confirm("Wygenerowano grafik.")) {
                 location.reload();
             }
         });
+        */
     }
     else {
         console.log(batchCounter);

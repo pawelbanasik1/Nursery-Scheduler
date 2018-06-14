@@ -14,6 +14,7 @@ function updateChosenNurse(nurse, shiftCode, dayOfWeek) {
     else if(shiftCode == 3){
         nurse.consecutiveLates++;
     }
+
     else {
         nurse.workedDays++;
     }
@@ -31,12 +32,14 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else if (nurse.restHours < 8 && shiftCode == 4 && nurse.workedYesterday == true) {
         return false;
     }
+    /*11 yours breaks--
     else if (nurse.consecutiveNights > 0 && shiftCode != 4) {
         return false;
     }
     else if (nurse.consecutiveLates > 0 && shiftCode < 3) {
         return false;
-    }
+    }*/
+    //--
     else if (nurse.consecutiveNights >= 2 && nurse.restHours >= 42) {
         return false;
     }
@@ -52,8 +55,12 @@ function checkNurse(nurse, dayOfWeek, shiftCode) {
     else if (nurse.canWorkAtNight == false && shiftCode == 4) {
         return false;
     }
-    else if(nurse.workedYesterday == false && dayOfWeek == 7){
-        return false;
+    //weekends of duty
+    else if(nurse.workedYesterday == false && dayOfWeek == 1){
+        if(nurse.weekendsOffDuty < 3){
+            return true;
+        }
+        else return false;
     }
     else return true;
 }
@@ -68,6 +75,10 @@ function softs(NursesArray){
 
     var temparray;
     for (var j = 0; j < NursesArray.length; j++) {
+        if(NursesArray[j].weekendsOffDuty < 2){
+            temparray = swap(NursesArray, j);
+        }
+        /*
         //soft nr 2
         if(NursesArray[j].workedYesterday){
             temparray = swap(NursesArray, j);
@@ -75,18 +86,26 @@ function softs(NursesArray){
         //soft nr 4
         if(NursesArray[j].maxHours<=30 && NursesArray[j].consecutiveNights>1){
             temparray = swap(NursesArray, j);
-        }
+        }*/
+        /*
         //soft 6
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].workedDays >3){
             NursesArray[j]+=10;
         }
-        //sof  8
+        //soft  8
         if(NursesArray[j].maxHours>=30 && NursesArray[j].maxHours<=48 && NursesArray[j].consecutiveShifts >3){
             NursesArray[j]+=10;
         }
-        //sof  10
-        //if(shiftCode==1) {}
-        //sof  12
+
+        //soft  10
+        if(NursesArray[j].consecutiveEarlies < 2) {
+            temparray = swap(NursesArray, j);
+        }
+        //soft  12 //to jest zle ale to niwazne bo i tak ma wage 10 wiec olewamy
+        if(NursesArray[j].consecutiveDays > 0 && NursesArray[j].consecutiveEarlies > 0) {
+            temparray = swap(NursesArray, j);
+        }
+        */
 
     }
     if(temparray != null){
